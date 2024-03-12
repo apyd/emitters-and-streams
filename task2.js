@@ -1,21 +1,29 @@
+import { EventEmitter } from './task1.js'
+
 class WithTime extends EventEmitter {
   execute(asyncFunc, ...args) {
-      // emit event start, end, data received
-      // call asyncFunc with args specified
-      // compute the time it takes to execute asyncFunc
+    const start = Date.now()
+    this.emit('begin')
+    asyncFunc(...args, (data) => {
+      this.emit('data', data)
+      const end = Date.now()
+      this.emit('end')
+      console.log(`Execution time: ${end - start}ms`)
+    })
   }
 }
 
-const fetchFromUrl = (url, cb) => {
-  // fetch from https://jsonplaceholder.typicode.com/posts/1
-  // transform to JSON
+const fetchFromUrl = async (url, cb) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return cb(JSON.stringify(data))
 }
-
 
 const withTime = new WithTime();
 
 withTime.on('begin', () => console.log('About to execute'));
 withTime.on('end', () => console.log('Done with execute'));
+withTime.on('data', (data) => console.log('Data received:', data))
 
 withTime.execute(fetchFromUrl, 'https://jsonplaceholder.typicode.com/posts/1');
 
