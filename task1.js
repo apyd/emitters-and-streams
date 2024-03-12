@@ -1,15 +1,78 @@
-class EventEmitter {}
+class EventEmitter {
+  constructor() {
+    this.events = new Map()
+  }
+
+  #checkEventExists(eventName) {
+    if (!this.events.has(eventName)) {
+      return false
+    }
+    return true
+  }
+
+  #addListenerToEvent(eventName, fn) {
+    if (!this.events.has(eventName)) {
+      this.events.set(eventName, [])
+    }
+    this.events.get(eventName).push(fn)
+  }
+
+  addListener(eventName, fn) {
+    this.#addListenerToEvent(eventName, fn)
+    return this
+  }
+  on(eventName, fn) {
+    return this.addListener(eventName, fn)
+  }
+  removeListener(eventName, fn) {
+    if(this.#checkEventExists(eventName)) {
+      const callbacks = this.events.get(eventName).filter(callback => callback !== fn)
+      this.events.set(eventName, callbacks)
+    } 
+    return this
+  }
+  off(eventName, fn) {
+    this.removeListener(eventName, fn)
+    return this
+  }
+  once(eventName, fn) {
+    const fnWrapper = () => {
+      fn();
+      this.removeListener(eventName, fnWrapper)
+    }
+    this.addListener(eventName, fnWrapper)
+    return this
+  }
+  emit(eventName, ...args) {
+    if(this.#checkEventExists(eventName)) {
+      this.events.get(eventName).forEach(fn => fn(...args))
+    }
+    return this
+  }
+  listenerCount(eventName) {
+    if(this.#checkEventExists(eventName)) {
+      return this.events.get(eventName).length
+    }
+    return 0
+  }
+  rawListeners(eventName) {
+    if(this.#checkEventExists(eventName)) {
+      return this.events.get(eventName)
+    }
+    return []
+  }
+}
 
 // ----------------- Provided code to check task 1 -----------------
 
 const myEmitter = new EventEmitter();
 
 function c1() {
-    console.log('an event occurred!');
+  console.log('an event occurred!');
 }
 
 function c2() {
-    console.log('yet another event occurred!');
+  console.log('yet another event occurred!');
 }
 
 myEmitter.on('eventOne', c1); // Register for eventOne
