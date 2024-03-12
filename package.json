@@ -1,6 +1,7 @@
 {
   "name": "node-mentoring-module-3-streams-and-emitters",
   "version": "1.0.0",
+  "type": "module",
   "description": "Homework for node mentoring program - module 3",
   "main": "index.js",
   "scripts": {
