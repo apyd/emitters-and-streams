@@ -1,0 +1,22 @@
+{
+  "name": "node-mentoring-module-3-streams-and-emitters",
+  "version": "1.0.0",
+  "description": "Homework for node mentoring program - module 3",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apyd/emitters-and-streams.git"
+  },
+  "keywords": [
+    "streams",
+    "emitters",
+    "nodejs"
+  ],
+  "author": "Artur Pydych",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apyd/emitters-and-streams/issues"
+  },
+  "homepage": "https://github.com/apyd/emitters-and-streams#readme"
+}
