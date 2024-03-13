@@ -26,5 +26,8 @@
   "homepage": "https://github.com/apyd/emitters-and-streams#readme",
   "devDependencies": {
     "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
