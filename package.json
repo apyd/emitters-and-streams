@@ -1,9 +1,14 @@
 {
   "name": "node-mentoring-module-3-streams-and-emitters",
   "version": "1.0.0",
+  "type": "module",
   "description": "Homework for node mentoring program - module 3",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "task1": "nodemon task1.js",
+    "task2": "nodemon task2.js",
+    "task3": "nodemon task3.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/apyd/emitters-and-streams.git"
@@ -18,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/apyd/emitters-and-streams/issues"
   },
-  "homepage": "https://github.com/apyd/emitters-and-streams#readme"
+  "homepage": "https://github.com/apyd/emitters-and-streams#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
+  }
 }
